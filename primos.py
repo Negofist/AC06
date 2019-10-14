@@ -1,3 +1,10 @@
+import os
+from flask import Flask, jsonify, request
+
+
+app = Flask(__name__)
+
+@app.route('/')
 def eh_primo(n):
     if n == 2:
         return True
@@ -15,7 +22,8 @@ def lista_primos():
     for i in range(2, 524):
         if eh_primo(i):
             lista.append(i)
-    print(lista)
+    return lista
 
-
-lista_primos()
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
